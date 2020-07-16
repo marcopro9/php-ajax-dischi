@@ -1,0 +1,30 @@
+main {
+  .container{
+    margin: 70px auto 0;
+    .album {
+      float: left;
+      margin: 20px;
+      padding: 30px;
+      height: 400px;
+      width: 300px;
+      background-color: $third_color;
+      text-align: center;
+      img {
+        height: 200px;
+      }
+      h2 {
+        margin: 10px 0;
+        color: $fifth_color;
+        font-size: $h2_fontsize;
+        text-transform: uppercase;
+      }
+      .autore {
+        color: $fourth_color;
+        font-size: $autore_fontsize;
+      }
+      .anno {
+        color: $fourth_color;
+      }
+    }
+  }
+}

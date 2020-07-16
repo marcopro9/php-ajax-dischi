@@ -1,0 +1,8 @@
+* {
+  @include res-browser;
+  font-family: $font_family;
+}
+body {
+  background: $first_color;
+  min-height: 100vh;
+}

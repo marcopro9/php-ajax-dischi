@@ -1,0 +1,57 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Lato", sans-serif;
+}
+
+body {
+  background: #1E2D3B;
+  min-height: 100vh;
+}
+
+header {
+  width: 100%;
+  height: 60px;
+  background: #2e3a46;
+}
+
+header img {
+  height: 50px;
+  margin-top: 5px;
+}
+
+main .container {
+  margin: 70px auto 0;
+}
+
+main .container .album {
+  float: left;
+  margin: 20px;
+  padding: 30px;
+  height: 400px;
+  width: 300px;
+  background-color: #2f3a46;
+  text-align: center;
+}
+
+main .container .album img {
+  height: 200px;
+}
+
+main .container .album h2 {
+  margin: 10px 0;
+  color: #fff;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+main .container .album .autore {
+  color: #5c6066;
+  font-size: 18px;
+}
+
+main .container .album .anno {
+  color: #5c6066;
+}
+
