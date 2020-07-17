@@ -16128,7 +16128,7 @@ $(document).ready(function () {
     });
   }
 
-  ; // creo una funzione per il sort by genere al change su option
+  ; // creo una funzione per il sort by artista al change su option
 
   function artisti() {
     $("select").change(function () {
