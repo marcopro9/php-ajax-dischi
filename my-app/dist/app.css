@@ -25,6 +25,17 @@ main .container {
   margin: 70px auto 0;
 }
 
+main .container .artista label {
+  font-size: 18px;
+  color: #fff;
+}
+
+main .container .artista select {
+  margin-left: 10px;
+  padding: 5px;
+  border-radius: 10px;
+}
+
 main .container .album {
   float: left;
   margin: 20px;
