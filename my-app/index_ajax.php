@@ -33,13 +33,7 @@
         <div class="artista">
           <label for="">Ordina per artista:</label>
           <select class="select" name="">
-            <option class="option" value="Tutti">Tutti</option>
-            <option class="option" value="Sting">Sting</option>
-            <option class="option" value="Queen">Queen</option>
-            <option class="option" value="Bon">Bon Jovi</option>
-            <option class="option" value="Iron">Iron Maiden</option>
-            <option class="option" value="Steve">Steve Gadd Band</option>
-            <option class="option" value="Eric">Eric Clapton</option>
+            <option class="option" value="">Tutti</option>
           </select>
         </div>
 
@@ -60,6 +54,10 @@
       </div>
 
     </script>
+
+    <script id="opzioni-autore-template" type="text/x-handlebars-template">
+			<option class="option" value="{{author}}">{{author}}</option>
+		</script>
 
     <script type="text/javascript" src="dist/app.js"></script>
   </body>

@@ -16094,16 +16094,24 @@ var Handlebars = __webpack_require__(/*! handlebars */ "./node_modules/handlebar
 
 
 $(document).ready(function () {
-  // chiamata ajax per prendere i dati dal database php
-  chiamataAlbum();
+  selectAutori();
+  chiamataAlbum(''); // creo una funzione per il sort by artista al change su option
 
-  function chiamataAlbum(album) {
+  $('.select').change(function () {
+    var selected = $(this).val();
+    chiamataAlbum(selected);
+  }); // chiamata ajax per prendere i dati dal database php
+
+  function chiamataAlbum(autoriFiltrati) {
+    $('.dischi').html('');
     $.ajax({
       url: 'http://localhost:8888/php-ajax-dischi/my-app/album-server.php',
-      type: 'GET',
+      method: 'GET',
+      data: {
+        author: autoriFiltrati
+      },
       success: function success(album) {
         stampaAlbum(album);
-        artisti();
       },
       error: function error() {
         alert('Errore');
@@ -16128,19 +16136,31 @@ $(document).ready(function () {
     });
   }
 
-  ; // creo una funzione per il sort by artista al change su option
+  ;
 
-  function artisti() {
-    $("select").change(function () {
-      // creo una variabile che prende il valore dell'opzione cliccata....
-      var selected = $(this).val(); // ...e a seconda dell'opzione mostro e nascondo
+  function selectAutori() {
+    $.ajax({
+      url: 'http://localhost:8888/php-ajax-dischi/my-app/album-server.php',
+      method: 'GET',
+      data: {
+        'author-list': 'true'
+      },
+      success: function success(dataResponse) {
+        var source = $('#opzioni-autore-template').html();
+        var template = Handlebars.compile(source);
 
-      $(".album").hide();
-      $(".album." + selected).show();
-
-      if (selected === "Tutti") {
-        // ...mostra tutti gli album
-        $(".album").show();
+        for (var i = 0; i < dataResponse.length; i++) {
+          var thisAuthor = dataResponse[i];
+          console.log(thisAuthor);
+          var context = {
+            author: thisAuthor
+          };
+          var html = template(context);
+          $('.select-artisti').append(html);
+        }
+      },
+      error: function error() {
+        alert('Errore caricamento autori');
       }
     });
   }

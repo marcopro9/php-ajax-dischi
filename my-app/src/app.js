@@ -5,15 +5,27 @@ const Handlebars = require("handlebars");
 // attendo il caricamento del documento
 $(document).ready(
   function() {
+    selectAutori();
+    chiamataAlbum('');
+
+    // creo una funzione per il sort by artista al change su option
+    $('.select').change(function(){
+      var selected = $(this).val();
+      chiamataAlbum(selected);
+    });
+
     // chiamata ajax per prendere i dati dal database php
-    chiamataAlbum();
-    function chiamataAlbum(album) {
+    function chiamataAlbum(autoriFiltrati) {
+      $('.dischi').html('');
+
       $.ajax({
         url: 'http://localhost:8888/php-ajax-dischi/my-app/album-server.php',
-        type: 'GET',
+        method: 'GET',
+        data: {
+          author: autoriFiltrati
+        },
         success: function (album) {
           stampaAlbum(album);
-          artisti();
         },
         error: function () {
           alert('Errore');
@@ -41,19 +53,34 @@ $(document).ready(
       );
     };
 
-    // creo una funzione per il sort by artista al change su option
-    function artisti(){
-      $("select").change(function () {
-        // creo una variabile che prende il valore dell'opzione cliccata....
-        var selected = $(this).val();
-        // ...e a seconda dell'opzione mostro e nascondo
-        $(".album").hide();
-        $(".album." + selected).show();
-        if (selected === "Tutti") {
-          // ...mostra tutti gli album
-          $(".album").show();
+    function selectAutori() {
+      $.ajax(
+        {
+          url: 'http://localhost:8888/php-ajax-dischi/my-app/album-server.php',
+          method: 'GET',
+          data: {
+            'author-list': 'true'
+          },
+          success: function(dataResponse) {
+            var source = $('#opzioni-autore-template').html();
+            var template = Handlebars.compile(source);
+
+            for (var i = 0; i < dataResponse.length; i++) {
+              var thisAuthor = dataResponse[i];
+              console.log(thisAuthor);
+              var context = {
+                author: thisAuthor
+              };
+              var html = template(context);
+
+              $('.select-artisti').append(html);
+            }
+          },
+          error: function() {
+            alert('Errore caricamento autori');
+          }
         }
-      });
+      );
     }
   }
 );
