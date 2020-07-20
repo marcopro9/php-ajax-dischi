@@ -32,7 +32,7 @@
         <!-- select per artista -->
         <div class="artista">
           <label for="">Ordina per artista:</label>
-          <select class="select" name="">
+          <select class="select-artisti" name="">
             <option class="option" value="">Tutti</option>
           </select>
         </div>
